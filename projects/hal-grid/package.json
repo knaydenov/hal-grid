@@ -1,0 +1,23 @@
+{
+  "name": "@knaydenov/hal-grid",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "ng-packagr -p ng-package.json"
+  },
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/material": "^6.4.0",
+    "@ngx-translate/core": "^10.0.2",
+    "@knaydenov/hal": "^1.0.0",
+    "@knaydenov/material-grid": "^1.0.0"
+  },
+  "devDependencies": {
+    "@angular/material": "^6.4.0",
+    "@angular/cdk": "^6.4.0",
+    "scss-bundle": "^2.3.2",
+    "@ngx-translate/core": "^10.0.2",
+    "@knaydenov/hal": "^1.0.0",
+    "@knaydenov/material-grid": "^1.0.0"
+  }
+}
