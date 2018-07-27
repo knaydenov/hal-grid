@@ -9,15 +9,15 @@
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/material": "^6.4.0",
     "@ngx-translate/core": "^10.0.2",
-    "@knaydenov/hal": "^1.0.0",
-    "@knaydenov/material-grid": "^1.0.0"
+    "@knaydenov/material-grid": "^1.0.0",
+    "@knaydenov/hal": "^2.0.0"
   },
   "devDependencies": {
-    "@angular/material": "^6.4.0",
     "@angular/cdk": "^6.4.0",
-    "scss-bundle": "^2.3.2",
+    "@angular/material": "^6.4.0",
+    "@knaydenov/hal": "^2.0.1",
+    "@knaydenov/material-grid": "^1.0.0",
     "@ngx-translate/core": "^10.0.2",
-    "@knaydenov/hal": "^1.0.0",
-    "@knaydenov/material-grid": "^1.0.0"
+    "scss-bundle": "^2.3.2"
   }
 }
