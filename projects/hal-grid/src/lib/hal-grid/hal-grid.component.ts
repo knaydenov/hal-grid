@@ -35,11 +35,15 @@ export class HalGridComponent<T extends Resource<IResource>> implements AfterVie
     });
     dialogRef.afterClosed().subscribe(shouldDelete => {
       if (shouldDelete) {
-        const deletes$ = rows.map(item => item.delete());
-        Observable.forkJoin(deletes$).subscribe(() => this.dataSource.refresh());
-        this.dataSource.selectNone();
+        this.onDeleteConfirmed(rows);
       }
     });
+  }
+
+  onDeleteConfirmed(rows: T[]) {
+    const deletes$ = rows.map(item => item.delete());
+    Observable.forkJoin(deletes$).subscribe(() => this.dataSource.refresh());
+    this.dataSource.selectNone();
   }
 
   ngAfterViewInit() {
