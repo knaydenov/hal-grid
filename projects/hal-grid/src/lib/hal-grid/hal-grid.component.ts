@@ -19,7 +19,7 @@ export class HalGridComponent<T extends Resource<IResource>> implements AfterVie
 
   @Output() pick = new EventEmitter<T[]>();
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     protected dialog: MatDialog
