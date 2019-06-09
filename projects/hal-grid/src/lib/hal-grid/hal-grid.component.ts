@@ -1,7 +1,7 @@
 import { Input, ViewChild, AfterViewInit, Output, EventEmitter } from "@angular/core";
 import { MatSort, MatDialogRef, MatDialog } from "@angular/material";
 import { HalDataSource } from "../hal-data-source";
-import { Observable } from "rxjs/Rx";
+import { Observable, forkJoin } from "rxjs";
 import { Resource, IResource } from '@knaydenov/hal';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
@@ -42,7 +42,7 @@ export class HalGridComponent<T extends Resource<IResource>> implements AfterVie
 
   onDeleteConfirmed(rows: T[]) {
     const deletes$ = rows.map(item => item.delete());
-    Observable.forkJoin(deletes$).subscribe(() => this.dataSource.refresh());
+    forkJoin(deletes$).subscribe(() => this.dataSource.refresh());
     this.dataSource.selectNone();
   }
 

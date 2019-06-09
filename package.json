@@ -25,14 +25,13 @@
     "@angular/platform-browser": "^8.0.0",
     "@angular/platform-browser-dynamic": "^8.0.0",
     "@angular/router": "^8.0.0",
+    "@knaydenov/hal": "^2.2.2",
+    "@knaydenov/hal-grid": "file:projects/hal-grid",
+    "@knaydenov/material-grid": "^2.0.0",
     "@ngx-translate/core": "^10.0.2",
     "@ngx-translate/http-loader": "^3.0.1",
-    "@knaydenov/hal": "^2.2.1",
-    "@knaydenov/material-grid": "^2.0.0",
-    "@knaydenov/hal-grid": "file:projects/hal-grid",
     "core-js": "^2.5.4",
     "rxjs": "^6.5.2",
-    "rxjs-compat": "^6.5.2",
     "zone.js": "^0.9.1"
   },
   "devDependencies": {
