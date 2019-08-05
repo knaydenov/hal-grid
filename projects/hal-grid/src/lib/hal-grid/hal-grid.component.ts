@@ -1,13 +1,9 @@
-import { Input, ViewChild, AfterViewInit, Output, EventEmitter } from "@angular/core";
-import { MatSort, MatDialogRef, MatDialog } from "@angular/material";
+import { Input, ViewChild, AfterViewInit } from "@angular/core";
+import { MatSort } from "@angular/material";
 import { HalDataSource } from "../hal-data-source";
-import { Observable, forkJoin } from "rxjs";
 import { Resource, IResource } from '@knaydenov/hal';
-import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 export class HalGridComponent<T extends Resource<IResource>> implements AfterViewInit {
-  @Input() showAdd = false;
-  @Input() showPick = false;
   @Input() showSelection = false;
   @Input() showState = false;
   @Input() showFilters = true;
@@ -17,34 +13,7 @@ export class HalGridComponent<T extends Resource<IResource>> implements AfterVie
   @Input() filters: string[] = [];
   @Input() dataSource: HalDataSource<T>;
 
-  @Output() pick = new EventEmitter<T[]>();
-
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-
-  constructor(
-    protected dialog: MatDialog
-  ) { }
-
-  pickRows(rows: T[]) {
-    this.pick.emit(rows);
-  }
-
-  confirmDelete(rows: T[]) {
-    const dialogRef: MatDialogRef<DeleteDialogComponent, boolean> = this.dialog.open(DeleteDialogComponent, {
-      data: rows
-    });
-    dialogRef.afterClosed().subscribe(shouldDelete => {
-      if (shouldDelete) {
-        this.onDeleteConfirmed(rows);
-      }
-    });
-  }
-
-  onDeleteConfirmed(rows: T[]) {
-    const deletes$ = rows.map(item => item.delete());
-    forkJoin(deletes$).subscribe(() => this.dataSource.refresh());
-    this.dataSource.selectNone();
-  }
 
   ngAfterViewInit() {
     if (this.sort) {

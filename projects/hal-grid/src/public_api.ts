@@ -4,5 +4,4 @@
 
 export * from './lib/hal-grid.module';
 export * from './lib/hal-data-source';
-export * from './lib/delete-dialog/delete-dialog.component';
 export * from './lib/hal-grid/hal-grid.component';
