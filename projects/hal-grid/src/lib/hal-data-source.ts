@@ -1,4 +1,4 @@
-import { GridDataSource, GridFilterDirective } from '@knaydenov/material-grid';
+import { GridDataSource, GridFilterDefDirective } from '@knaydenov/material-grid';
 import { Resource, IResource, PageableResource } from '@knaydenov/hal';
 import { CollectionViewer } from "@angular/cdk/collections";
 import { Observable } from "rxjs";
@@ -53,12 +53,12 @@ export class HalDataSource<T extends Resource<IResource>> extends GridDataSource
         return this.pageableResource.page - 1;
     }
 
-    activateFilter(filter: GridFilterDirective) {
+    activateFilter(filter: GridFilterDefDirective) {
         const newFilters = this.pageableResource.filters.filter(_filter => _filter.field !== filter.field).slice();
         if (filter.multiple) {
-            (<any[]>filter.value).map(value => newFilters.push({ field: filter.key, multiple: true, value: filter.toModel(value) }));
+            (<any[]>filter.value).map(value => newFilters.push({ field: filter.field, multiple: true, value: filter.toModel(value) }));
         } else {
-            newFilters.push({ field: filter.key, multiple: false, value: filter.toModel(filter.value) });
+            newFilters.push({ field: filter.field, multiple: false, value: filter.toModel(filter.value) });
         }
         this.pageableResource.filters = newFilters;
 
@@ -67,7 +67,7 @@ export class HalDataSource<T extends Resource<IResource>> extends GridDataSource
         this.pageableResource.commit();
     }
 
-    deactivateFilter(filter: GridFilterDirective) {
+    deactivateFilter(filter: GridFilterDefDirective) {
         this.pageableResource.filters = this.pageableResource.filters.filter(_filter => _filter.field !== filter.field).slice();
         this.pageableResource.commit();
     }
