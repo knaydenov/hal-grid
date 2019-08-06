@@ -16,14 +16,14 @@ export class HalDataSource<T extends Resource<IResource>> extends GridDataSource
                 if (!optFilters.length) {
                     filter.value = undefined;
                 } else {
-                    filter.value = optFilters.map(optFilter => filter.fromModel(optFilter.value));
+                    filter.value = optFilters.map(optFilter => filter.convertFromModelValue(optFilter.value));
                 }
             } else {
                 const optFilter = options.filters.find(optFilter => optFilter.field === filter.field);
                 if (!optFilter) {
                     filter.value = undefined;
                 } else {
-                    filter.value = filter.fromModel(optFilter.value);
+                    filter.value = filter.convertFromModelValue(optFilter.value);
                 }
             }
         }));
@@ -56,9 +56,9 @@ export class HalDataSource<T extends Resource<IResource>> extends GridDataSource
     activateFilter(filter: GridFilterDefDirective) {
         const newFilters = this.pageableResource.filters.filter(_filter => _filter.field !== filter.field).slice();
         if (filter.multiple) {
-            (<any[]>filter.value).map(value => newFilters.push({ field: filter.field, multiple: true, value: filter.toModel(value) }));
+            (<any[]>filter.value).map(value => newFilters.push({ field: filter.field, multiple: true, value: filter.convertToModelValue(value) }));
         } else {
-            newFilters.push({ field: filter.field, multiple: false, value: filter.toModel(filter.value) });
+            newFilters.push({ field: filter.field, multiple: false, value: filter.convertToModelValue(filter.value) });
         }
         this.pageableResource.filters = newFilters;
 
